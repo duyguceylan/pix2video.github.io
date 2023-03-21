@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Pix2Video</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/slider.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+</head>
+
+<body>
+    <div id="body">
+
+        <h1 id="title"></h1>
+        <div id="author-list">
+        </div>
+        <div id="affiliation-list">
+        </div>
+        <div id="footnote">
+            <center><span >*joint first authors</span></center>
+        </div>
+
+        <div id="button-list">
+            <a id="arxiv">
+                <img src="assets/logos/arXiv.svg">
+                <span>arXiv</span>
+            </a>
+        </div>
+
+        <div id="content">
+        
+            <section class="slider-wrapper">
+                <button class="slide-arrow slide-arrow-prev">
+                            &#8249;
+                </button>
+                <button class="slide-arrow slide-arrow-next">
+                            &#8250;
+                </button>
+
+                <ul class="slides-container">
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px">watercolor painting of a dog running</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/libby.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/libby_edit2.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a group of rainbow fish swimming in an aquarium</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/goldfish.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/goldfish_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a kite-surfer in the ocean at sunset</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/kitesurf.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/kitesurf_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a white boat traveling down a body of water at nighttime</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/boat.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/boat_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a group of chocolate pigs looking for food</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/pigs.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/pigs_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">oil painting of a group of flamingos standing near some rocks and water</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/flamingo.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/flamingo_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a grizzly bear walking around the lake, foggy day</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/bear.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/bear_edit2.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a rusty car driving in the countryside</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/carturn.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/carturn_edit2.mp4">
+                        </video>
+                    </li>
+                </ul>
+            </section>
+
+            <div id='method'> 
+                <h2>Abstract</h2>
+                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Image diffusion models, trained on massive image collections, have emerged as the most versatile image generator model in terms of quality and diversity. They support inverting real images and conditional (e.g., text) generation, making them attractive for high-quality image editing applications. We investigate how to use such pre-trained image models for text-guided video editing. The critical challenge is to achieve the target edits while still preserving the content of the source video. Our method works in two simple steps: first, we use a pre-trained structure-guided (e.g., depth) image diffusion model to perform text-guided edits on an anchor frame; then, in the key step, we progressively propagate the changes to the future frames via self-attention feature injection to adapt the core denoising step of the diffusion model. We then consolidate the changes by adjusting the latent code for the frame before continuing the process. Our approach is training-free and generalizes to a wide range of edits. We demonstrate the effectiveness of the approach by extensive experimentation and compare it against four different prior and parallel efforts (on ArXiv). We demonstrate that realistic text-guided video edits are possible, without any compute-intensive preprocessing or video-specific finetuning.</p></center>
+            </div>
+            <div id='method'> 
+                <h2>Method Overview</h2>
+                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Pix2Video first inverts each frame with DDIM-inversion and consider it as the initial noise for the denoising process. To edit each frame (lower row), we select a reference frame (upper row), inject its self-attention features to the UNet. At each diffusion step, we also update the latent of the current frame guided by the latent of the reference.</p></center>
+                <img src="assets/imgs/pipeline.png" height=285>
+            </div>
+            <div id="results">
+                <h2>Comparison with state-of-the-art approaches
+                    method</h2>
+                <div id="libby">
+                    <center><span style="color: forestgreen;">a dog with leopard texture running</span></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/origin/libby.mp4">
+                                </video>
+                                <div>
+                                    input
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_jamriska/libby_edit1.mp4">
+                                </video>
+                                <div>
+                                    Jamriska et al. [20]
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_text2live/libby_edit1.mp4">
+                                </video>
+                                <div>
+                                    Text2Live [3]
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <video controls muted loop width="250">
+                                    <source src="assets/results_perframe/libby_edit1.mp4">
+                                </video>
+                                <div>
+                                    Per-frame editing (click to play)
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_tuneavideo/libby_edit1.mp4">
+                                </video>
+                                <div>
+                                    Tune-a-Video [56]
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_cfg/libby_edit1.mp4">
+                                </video>
+                                <div>
+                                    Pix2Video (ours)
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+                <br>
+                <div id="fish">
+                    <center><span style="color: forestgreen;">a group of 8-bit pixelated fish swimming in an aquarium</span></center></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/origin/goldfish.mp4">
+                                </video>
+                                <div>
+                                    input
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_jamriska/goldfish_edit2.mp4">
+                                </video>
+                                <div>
+                                    Jamriska et al.
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_text2live/goldfish_edit2.mp4">
+                                </video>
+                                <div>
+                                    Text2Live
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <video controls muted loop width="250">
+                                    <source src="assets/results_perframe/goldfish_edit2.mp4">
+                                </video>
+                                <div>
+                                    Per-frame editing (click to play)
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_tuneavideo/goldfish_edit2.mp4">
+                                </video>
+                                <div>
+                                    Tune-a-Video
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_cfg/goldfish_edit2.mp4">
+                                </video>
+                                <div>
+                                    Pix2Video (ours)
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+                <br>
+                <div id="kite">
+                    <center><span style="color: forestgreen;">a kite-surfer in the magical starry ocean with an aurora borealis in the background</span></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/origin/kitesurf.mp4">
+                                </video>
+                                <div>
+                                    input
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_jamriska/kitesurf_edit2.mp4">
+                                </video>
+                                <div>
+                                    Jamriska et al.
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_text2live/kitesurf_edit2.mp4">
+                                </video>
+                                <div>
+                                    Text2Live
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <video controls muted loop width="250">
+                                    <source src="assets/results_perframe/kitesurf_edit2.mp4">
+                                </video>
+                                <div>
+                                    Per-frame editing (click to play)
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_tuneavideo/kitesurf_edit2.mp4">
+                                </video>
+                                <div>
+                                    Tune-a-Video
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_cfg/kitesurf_edit2.mp4">
+                                </video>
+                                <div>
+                                    Pix2Video (ours)
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+                <br>
+                <div id="pigs">
+                    <center><span style="color: forestgreen;">a group of pigs standing in the dirt, claymation</span></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/origin/pigs.mp4">
+                                </video>
+                                <div>
+                                    input
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_jamriska/pigs_edit2.mp4">
+                                </video>
+                                <div>
+                                    Jamriska et al.
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_text2live/pigs_edit2.mp4">
+                                </video>
+                                <div>
+                                    Text2Live
+                                </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <video controls muted loop width="250">
+                                    <source src="assets/results_perframe/pigs_edit2.mp4">
+                                </video>
+                                <div>
+                                    Per-frame editing (click to play)
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_tuneavideo/pigs_edit2.mp4">
+                                </video>
+                                <div>
+                                    Tune-a-Video
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="250">
+                                    <source src="assets/results_cfg/pigs_edit2.mp4">
+                                </video>
+                                <div>
+                                    Pix2Video (ours)
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+
+                <h2>Applying Jamriska et al. [20] as post-processing</h2>
+                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Our method uses depth as a structural cue which helps to preserve the structure of the input video. Hence, it can be used in conjunction with style propagation methods as a post processing to further improve the results. Specifically, we provide every 3rd frame generated by our method as a keyframe to the method of Jamriska et al. [20] and propagate the style of these keyframes to the inbetween frames.</p></center>
+                <div id='pigs'>    
+                    <center><span style="color: forestgreen;">a group of pigs standing in the dirt, claymation</span></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/origin/pigs.mp4">
+                                </video>
+                                <div>
+                                    input video
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/results_cfg/pigs_edit1.mp4">
+                                </video>
+                                <div>
+                                    ours
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/pigs_edit1_ours_jamriska.mp4">
+                                </video>
+                                <div>
+                                    ours post-processed
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+                <br>
+                <div id='blackswan'>    
+                    <center><span style="color: forestgreen;">a copper swan on the lake</span></center>
+                    <table style="width: 50%;margin-left:auto;margin-right:auto;">
+                        <tr>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/origin/blackswan.mp4">
+                                </video>
+                                <div>
+                                    input video
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/results_cfg/blackswan_edit2.mp4">
+                                </video>
+                                <div>
+                                    ours
+                                </div>
+                            </th>
+                            <th>
+                                <video autoplay muted loop width="300">
+                                    <source src="assets/blackswan_edit2_ours_jamriska.mp4">
+                                </video>
+                                <div>
+                                    ours post-processed
+                                </div>
+                            </th>
+                        </tr>
+                      </table>
+                </div>
+
+                <h2>More Results</h2>
+                <section class="slider-wrapper">
+                <button class="slide-arrow slide-arrow-prev">
+                            &#8249;
+                </button>
+                <button class="slide-arrow slide-arrow-next">
+                            &#8250;
+                </button>
+
+                <ul class="slides-container">
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a dalmatian dog running</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/libby.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/libby_edit3.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px">2D vector animation of a group of flamingos standing near some rocks and water</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/flamingo.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/flamingo_edit2.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a car on a snow covered road in the countryside</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/carturn.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/carturn_edit1.mp4">
+                        </video>
+                    </li>
+                    <li class="slide">
+                        <center><span style="color: forestgreen;font-size:18px;">a crochet swan on the lake</span></center>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/origin/blackswan.mp4">
+                        </video>
+                        <video autoplay muted loop height="300">
+                            <source src="assets/results_cfg/blackswan_edit3.mp4">
+                        </video>
+                    </li>
+                </ul>
+            </section>
+            
+            <p class="section">&nbsp;</p>
+            <p class="section" id="bibtex"><b>Bibtex</b></p>
+            <table border="0">
+                <tbody>
+                <pre style=" display: block;
+                    background: #eee;
+                    white-space: pre;
+                    -webkit-overflow-scrolling: touch;
+                    max-width: 100%;
+                    min-width: 100px;
+                    border-radius: 20px;
+                    ">
+
+                @article{ceylan2023,
+                    author    = {Ceylan, Duygu and Huang, Chun-Hao and Mitra, Niloy J.},
+                    title     = {Pix2Video: Video Editing using Image Diffusion},
+                    journal   = {arXiv:2303.04761},
+                    year      = {2023},
+                }       
+                </pre>
+            </tbody>
+        </table>
+        
+        </div>
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+    <!-- <script type="text/javascript" src="cocoen.js"></script> -->
+    <!-- <script>
+        Cocoen.parse(document.body);
+    </script> -->
+</body>
