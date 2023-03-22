@@ -510,10 +510,36 @@
                         </video>
                     </li>
                 </ul>
+                </section>
+            <br>
+
+            <section class="section" id="concurrent work">
+                <div class="container is-max-desktop content">
+                <!-- Concurrent Work. -->
+                    <div class="columns is-centered">
+                        <div class="column is-full-width">
+                            <h2>Concurrent work</h2>
+                                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+
+                                    With the increasing success of large scale text to image generation models in image editing tasks, there has been several parallel efforts that focus on using such models for editing videos. We summarize a few concurrent work that we have recently came across. If we have missed out another key concurrent work, please reach out to us over email.
+.
+                                </p></center>
+                                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+                                    <a href="https://video-p2p.github.io/">Video-P2P</a> extends the idea of null inversion to a video clip and optimizes a common null embedding when inverting the video frames. The authors also adapt a cross attention control mechanism similar to Prompt-to-Prompt. We note that our method is orthogonal and the proposed inversion strategy and cross attention control can be adapted in our method as well. While Video-P2P finetunes the generator given the input video, we do not perform any training.
+                                </p></center>
+                                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">
+                                    <a href="https://fate-zero-edit.github.io/">Fate-Zero</a> also proposes a training-free strategy for editing videos. They focus on utilizing cross attention maps to compute blending masks to minimize inconsistency in the background region of the edited videos.
+                                </p></center>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Concurrent Work. -->
+
+                </div>
             </section>
             
             <p class="section">&nbsp;</p>
-            <p class="section" id="bibtex"><b>Bibtex</b></p>
+            <!--p class="section" id="bibtex"--><h2>Bibtex</h2><!--/p-->
             <table border="0">
                 <tbody>
                 <pre style=" display: block;
