@@ -12,12 +12,14 @@
     <div id="body">
 
         <h1 id="title"></h1>
+        <br>
         <div id="author-list">
         </div>
+        <br>
         <div id="affiliation-list">
         </div>
         <div id="footnote">
-            <center><span >*joint first authors</span></center>
+            <span >*joint first authors</span>
         </div>
 
         <div id="button-list">
@@ -27,8 +29,7 @@
             </a>
         </div>
 
-        <div id="content">
-        
+        <div id="content" style="max-width:900px;margin:auto; margin-bottom: 1em" >
             <section class="slider-wrapper">
                 <button class="slide-arrow slide-arrow-prev">
                             &#8249;
@@ -39,16 +40,53 @@
 
                 <ul class="slides-container">
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px">watercolor painting of a dog running</span></center>
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <tr>
+                                <th>
+                                    <p style="font-size:18px;">
+                                        input video
+                                    </p>
+                                </th>
+                                <th>
+                                    <p style="font-size:18px;">
+                                        edit prompt
+                                    </p>
+                                </th>
+                                <th>
+                                    <p style="font-size:18px;">
+                                        edited video
+                                    </p>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <video autoplay muted loop height="300">
+                                        <source src="assets/origin/libby.mp4">
+                                    </video>
+                                </th>
+                                <th>
+                                    <!-- <p style="font-size:18px; "> -->
+                                        <span style="color: #009c3b; font-family: Bradley Hand;">watercolor painting of a dog running</span>
+                                    <!-- </p> -->
+                                </th>
+                                <th>
+                                    <video autoplay muted loop height="300">
+                                        <source src="assets/results_cfg/libby_edit2.mp4">
+                                    </video>
+                                </th>
+
+                            </tr>
+                        </table>
+                        <!-- <center><span style="color: #009c3b;font-size:18px">watercolor painting of a dog running</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/libby.mp4">
                         </video>
                         <video autoplay muted loop height="300">
                             <source src="assets/results_cfg/libby_edit2.mp4">
-                        </video>
+                        </video> -->
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a group of rainbow fish swimming in an aquarium</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a group of rainbow fish swimming in an aquarium</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/goldfish.mp4">
                         </video>
@@ -57,7 +95,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a kite-surfer in the ocean at sunset</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a kite-surfer in the ocean at sunset</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/kitesurf.mp4">
                         </video>
@@ -66,7 +104,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a white boat traveling down a body of water at nighttime</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a white boat traveling down a body of water at nighttime</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/boat.mp4">
                         </video>
@@ -75,7 +113,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a group of chocolate pigs looking for food</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a group of chocolate pigs looking for food</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/pigs.mp4">
                         </video>
@@ -84,7 +122,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">oil painting of a group of flamingos standing near some rocks and water</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">oil painting of a group of flamingos standing near some rocks and water</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/flamingo.mp4">
                         </video>
@@ -93,7 +131,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a grizzly bear walking around the lake, foggy day</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a grizzly bear walking around the lake, foggy day</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/bear.mp4">
                         </video>
@@ -102,7 +140,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a rusty car driving in the countryside</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a rusty car driving in the countryside</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/carturn.mp4">
                         </video>
@@ -117,16 +155,18 @@
                 <h2>Abstract</h2>
                 <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Image diffusion models, trained on massive image collections, have emerged as the most versatile image generator model in terms of quality and diversity. They support inverting real images and conditional (e.g., text) generation, making them attractive for high-quality image editing applications. We investigate how to use such pre-trained image models for text-guided video editing. The critical challenge is to achieve the target edits while still preserving the content of the source video. Our method works in two simple steps: first, we use a pre-trained structure-guided (e.g., depth) image diffusion model to perform text-guided edits on an anchor frame; then, in the key step, we progressively propagate the changes to the future frames via self-attention feature injection to adapt the core denoising step of the diffusion model. We then consolidate the changes by adjusting the latent code for the frame before continuing the process. Our approach is training-free and generalizes to a wide range of edits. We demonstrate the effectiveness of the approach by extensive experimentation and compare it against four different prior and parallel efforts (on ArXiv). We demonstrate that realistic text-guided video edits are possible, without any compute-intensive preprocessing or video-specific finetuning.</p></center>
             </div>
+            <br>
             <div id='method'> 
                 <h2>Method Overview</h2>
-                <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Pix2Video first inverts each frame with DDIM-inversion and consider it as the initial noise for the denoising process. To edit each frame (lower row), we select a reference frame (upper row), inject its self-attention features to the UNet. At each diffusion step, we also update the latent of the current frame guided by the latent of the reference.</p></center>
+                <p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Pix2Video first inverts each frame with DDIM-inversion and consider it as the initial noise for the denoising process. To edit each frame (lower row), we select a reference frame (upper row), inject its self-attention features to the UNet. At each diffusion step, we also update the latent of the current frame guided by the latent of the reference.</p>
                 <img src="assets/imgs/pipeline.png" height=285>
             </div>
+            <br>
             <div id="results">
                 <h2>Comparison with state-of-the-art approaches
                     method</h2>
                 <div id="libby">
-                    <center><span style="color: forestgreen;">a dog with leopard texture running</span></center>
+                    <span style="color: #009c3b;">a dog with leopard texture running</span>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -142,7 +182,7 @@
                                     <source src="assets/results_jamriska/libby_edit1.mp4">
                                 </video>
                                 <div>
-                                    Jamriska et al. [20]
+                                    Jamriska et al.
                                 </div>
                             </th>
                             <th>
@@ -150,7 +190,7 @@
                                     <source src="assets/results_text2live/libby_edit1.mp4">
                                 </video>
                                 <div>
-                                    Text2Live [3]
+                                    Text2Live
                                 </div>
                             </th>
                         </tr>
@@ -184,7 +224,7 @@
                 </div>
                 <br>
                 <div id="fish">
-                    <center><span style="color: forestgreen;">a group of 8-bit pixelated fish swimming in an aquarium</span></center></center>
+                    <center><span style="color: #009c3b;">a group of 8-bit pixelated fish swimming in an aquarium</span></center></center>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -242,7 +282,7 @@
                 </div>
                 <br>
                 <div id="kite">
-                    <center><span style="color: forestgreen;">a kite-surfer in the magical starry ocean with an aurora borealis in the background</span></center>
+                    <center><span style="color: #009c3b;">a kite-surfer in the magical starry ocean with an aurora borealis in the background</span></center>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -300,7 +340,7 @@
                 </div>
                 <br>
                 <div id="pigs">
-                    <center><span style="color: forestgreen;">a group of pigs standing in the dirt, claymation</span></center>
+                    <center><span style="color: #009c3b;">a group of pigs standing in the dirt, claymation</span></center>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -357,10 +397,10 @@
                       </table>
                 </div>
 
-                <h2>Applying Jamriska et al. [20] as post-processing</h2>
+                <!-- <h2>Applying Jamriska et al. [20] as post-processing</h2>
                 <center><p style="max-width:900px; font-size:18px; margin:auto; text-align: justify; margin-bottom: 1em;">Our method uses depth as a structural cue which helps to preserve the structure of the input video. Hence, it can be used in conjunction with style propagation methods as a post processing to further improve the results. Specifically, we provide every 3rd frame generated by our method as a keyframe to the method of Jamriska et al. [20] and propagate the style of these keyframes to the inbetween frames.</p></center>
                 <div id='pigs'>    
-                    <center><span style="color: forestgreen;">a group of pigs standing in the dirt, claymation</span></center>
+                    <center><span style="color: #009c3b;">a group of pigs standing in the dirt, claymation</span></center>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -392,7 +432,7 @@
                 </div>
                 <br>
                 <div id='blackswan'>    
-                    <center><span style="color: forestgreen;">a copper swan on the lake</span></center>
+                    <center><span style="color: #009c3b;">a copper swan on the lake</span></center>
                     <table style="width: 50%;margin-left:auto;margin-right:auto;">
                         <tr>
                             <th>
@@ -421,8 +461,8 @@
                             </th>
                         </tr>
                       </table>
-                </div>
-
+                </div> -->
+                <br>
                 <h2>More Results</h2>
                 <section class="slider-wrapper">
                 <button class="slide-arrow slide-arrow-prev">
@@ -434,7 +474,7 @@
 
                 <ul class="slides-container">
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a dalmatian dog running</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a dalmatian dog running</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/libby.mp4">
                         </video>
@@ -443,7 +483,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px">2D vector animation of a group of flamingos standing near some rocks and water</span></center>
+                        <center><span style="color: #009c3b;font-size:18px">2D vector animation of a group of flamingos standing near some rocks and water</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/flamingo.mp4">
                         </video>
@@ -452,7 +492,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a car on a snow covered road in the countryside</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a car on a snow covered road in the countryside</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/carturn.mp4">
                         </video>
@@ -461,7 +501,7 @@
                         </video>
                     </li>
                     <li class="slide">
-                        <center><span style="color: forestgreen;font-size:18px;">a crochet swan on the lake</span></center>
+                        <center><span style="color: #009c3b;font-size:18px;">a crochet swan on the lake</span></center>
                         <video autoplay muted loop height="300">
                             <source src="assets/origin/blackswan.mp4">
                         </video>
@@ -483,9 +523,10 @@
                     max-width: 100%;
                     min-width: 100px;
                     border-radius: 20px;
+                    text-align: left
                     ">
 
-                @article{ceylan2023,
+                @article{ceylan2023pix2video,
                     author    = {Ceylan, Duygu and Huang, Chun-Hao and Mitra, Niloy J.},
                     title     = {Pix2Video: Video Editing using Image Diffusion},
                     journal   = {arXiv:2303.04761},
